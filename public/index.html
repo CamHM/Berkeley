@@ -1,0 +1,18 @@
+<html data-ng-app="myApp">
+<head>
+  <title>Berkeley</title>
+  <script src="javascripts/angular.min.js"></script>
+  <script src="javascripts/controller.js"></script>
+  <script src="javascripts/socket.io.js"></script>
+  <script src="javascripts/materialize.min.js"></script>
+  <link rel="stylesheet" href="stylesheets/materialize.min.css" type="text/css">
+</head>
+<body data-ng-controller="appCtrl as ctrl">
+  <div>
+    <p> {{ ctrl.actualTime }} </p>
+  </div>
+  <div>
+    <p> {{ ctrl.serverDifference }} </p>
+  </div>
+</body>
+</html>
