@@ -4,8 +4,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const server = app.listen('3100');
+const io = require('socket.io').listen(server);
 
 const indexRouter = require('./routes/index' )(io);
 
@@ -14,9 +14,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-server.listen(3000, function () {
-   console.log('Listening port 3000');
-});
 
 app.use('/', indexRouter);
 

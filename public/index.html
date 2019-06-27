@@ -7,12 +7,15 @@
   <script src="javascripts/materialize.min.js"></script>
   <link rel="stylesheet" href="stylesheets/materialize.min.css" type="text/css">
 </head>
-<body data-ng-controller="appCtrl as ctrl">
+<body data-ng-controller="appCtrl">
+  <nav>
+    <div class="nav-wrapper blue cyan lighten-1">
+      <a href="#" class="brand-logo">Algoritmo de Berkeley</a>
+    </div>
+  </nav>
   <div>
-    <p> {{ ctrl.actualTime }} </p>
+    <h4>Hora actual: {{ actualTime }}</h4>
   </div>
-  <div>
-    <p> {{ ctrl.serverDifference }} </p>
-  </div>
+
 </body>
 </html>
