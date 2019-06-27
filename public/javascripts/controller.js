@@ -18,5 +18,10 @@ myApp.controller('appCtrl', ['$scope', function ($scope) {
         clearInterval(interval);
         $scope.actualTime = new Date(message.newTime).toLocaleTimeString(COUNTRY);
         $scope.$apply();
-    })
+    });
+
+    socket.on('disconnect', () =>{
+        socket.close();
+        console.log('Conexión del socket cerrada');
+    });
 }]);

@@ -32,6 +32,7 @@ module.exports = function(io) {
         socket.on('send', (message) => {
             sockets.push(message);
             console.log(`This time came: ${new Date(message.hour).toLocaleTimeString(COUNTRY)}`);
+            console.log(sockets.length + ' ' + clientsCount);
             if (sockets.length === clientsCount) {
                 sockets.forEach(socket => {
                     socket.difference = socket.hour - actualTime.getTime();
@@ -44,6 +45,10 @@ module.exports = function(io) {
                 newTime = actualTime.getTime() + avg;
                 console.log(`new server time: ${new Date(newTime).toLocaleTimeString(COUNTRY)}`);
                 viewSocket.emit('newTime', {newTime});
+
+                sockets.forEach(socket => {
+                    hourSocket.to(socket.socket).emit('newTime', { difference: (newTime - socket.hour)});
+                });
             }
         });
     });
@@ -56,7 +61,7 @@ module.exports = function(io) {
         hourSocket.to('hour room').emit('time');
     }, 20000);
 
-    hourSocket.on('disconnect', () => {
+    hourSocket.on('disconnected', () => {
         clientsCount--;
     });
 
